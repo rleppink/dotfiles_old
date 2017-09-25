@@ -1,0 +1,20 @@
+Config
+  { border      = FullB
+  , borderColor = "#0E0E0E"
+  , font        = "xft:DejaVu Sans Mono:size=8"
+  , position    = Static { xpos = 8, ypos = 8, width = 1350, height = 20 }
+  , template    = "}%StdinReader%{%battery% %date%  "
+  , textOffset  = 14
+  , commands =
+    [ Run StdinReader
+    , Run BatteryP
+        ["BAT0"]
+        ["-t", "<acstatus>", "--"
+        ,"-O", "<left>%+ <fc=#AEAEAE>|</fc>"
+        ,"-o", "<left>%- <fc=#AEAEAE>|</fc>"
+        ,"-i", ""
+        ]
+        100
+    , Run Date "%A, %d %B %H:%M" "date" 100
+    ]
+}

@@ -1,0 +1,27 @@
+#include "/home/rleppink/.xcolors"
+
+! X config
+Xcursor.size: 2
+
+! URxvt config
+URxvt.font: xft:DejaVuSansMono:size=8
+URxvt.internalBorder: 16
+URxvt.pointerBlank: true
+URxvt.saveLines: 10000
+URxvt.scrollBar: False
+
+! Font config
+Xft.antialias: true
+Xft.autohint: false
+Xft.dpi: 96
+Xft.hinting: false
+Xft.hintstyle: hintslight
+Xft.lcdfilter: lcddefault
+Xft.rgba: rgb
+
+! rofi color config
+! xresources should be able to know I want *.color12 or something...
+!                  bg       fg       bg-alt      hl-bg    hl-fg
+rofi.color-normal: #FEFEFE, #0E0E0E, #FEFEFE, #DEDEDE, #0E0E0E
+rofi.color-window: #FEFEFE, #0E0E0E, #AEAEAE, #AEAEAE, #AEAEAE
+
