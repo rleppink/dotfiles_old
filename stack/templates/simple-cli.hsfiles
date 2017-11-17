@@ -60,7 +60,6 @@ main = do
   args <- unwrapRecord "{{name}}"
 
   print (args :: Arguments Unwrapped)
-  
 
 {-# START_FILE LICENSE #-}
 Copyright {{author-name}}{{^author-name}}Author name here{{/author-name}} (c) {{year}}{{^year}}2017{{/year}}
