@@ -5,7 +5,7 @@ Xcursor.size: 2
 
 ! URxvt config
 URxvt.font: xft:DejaVuSansMono:size=8
-URxvt.internalBorder: 16
+URxvt.internalBorder: 8
 URxvt.pointerBlank: true
 URxvt.saveLines: 10000
 URxvt.scrollBar: False
@@ -20,7 +20,8 @@ Xft.lcdfilter: lcddefault
 Xft.rgba: rgb
 
 ! rofi color config
-! xresources should be able to know I want *.color12 or something...
+! rofi apparently doesnt support xresources colors from its
+! own config file in ~/.config/rofi/config
 !                  bg       fg       bg-alt      hl-bg    hl-fg
 rofi.color-normal: #FEFEFE, #0E0E0E, #FEFEFE, #DEDEDE, #0E0E0E
 rofi.color-window: #FEFEFE, #0E0E0E, #AEAEAE, #AEAEAE, #AEAEAE

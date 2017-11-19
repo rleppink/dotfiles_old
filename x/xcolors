@@ -24,11 +24,11 @@
 *.color12:      #1ab6ea
 
 ! magenta
-*.color5:       #ff1931
+*.color5:       #ff9fa9
 *.color13:      #ff0059
 
 ! cyan
-*.color6:       #00c1bc
+*.color6:       #4ac1be
 *.color14:      #15a19e
 
 ! white

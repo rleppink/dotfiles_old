@@ -7,12 +7,13 @@ set dir=~/.vim/swp
 call plug#begin('~/.vim/plugged')
 
 " General plugins
-Plug 'ctrlpvim/ctrlp.vim'
+Plug 'w0rp/ale'
+Plug 'tpope/vim-surround'
+Plug 'srstevenson/vim-picker'
 
 " Language specific plugins
-Plug 'neapel/vim-java-bytecode'
 Plug 'neovimhaskell/haskell-vim'
-Plug 'rhysd/vim-clang-format'
+Plug 'LnL7/vim-nix'
 
 call plug#end()
 
@@ -24,6 +25,9 @@ filetype off
 filetype plugin indent on       " load file type plugins + indentation
 set number                      " show line numbers
 autocmd FileType c,cc,cpp,h ClangFormatAutoEnable
+set showcmd
+set hidden
+
 
 "" Statusline
 set laststatus=2
@@ -69,6 +73,13 @@ au BufNewFile,BufRead *.md set filetype=markdown
 au BufNewFile,BufRead *.javap setf java-bytecode
 au BufNewFile,BufRead *.jasmin setf java-bytecode
 au BufNewFile,BufRead *.qss setf css
+
+"" Plugin settings
+" ale
+let g:ale_lint_on_text_changed = 'normal'
+" vim-picker
+nmap <unique> <C-P> <Plug>PickerEdit
+nmap <unique> <Space> <Plug>PickerBuffer
 
 
 "" Tab completion in menus

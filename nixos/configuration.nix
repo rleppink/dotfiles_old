@@ -7,10 +7,10 @@ in
 {
   imports =
     [
-    ./hardware-configuration.nix
+    /etc/nixos/hardware-configuration.nix
     ];
 
-  hardware.bluetooth.enable = false;
+  hardware.pulseaudio.enable = true;
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -32,38 +32,49 @@ in
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
     binutils
+    cabal-install
+    calibre
     dropbox
     dropbox-cli
+    dunst
+    emacs
     exfat
     feh
+    unstable.firefox-devedition-bin
     ffmpeg
+    fzy
+    ghc
     gimp
     git
-    ghc
     gnumake
     google-chrome
     haskellPackages.xmobar
     htop
     irssi
     keepassx2
+    khal
+    libnotify
     maim
     mpv
+    nodejs
     python36
+    plantuml
     powertop
     ranger
     rfkill
     rofi
     rxvt_unicode
     screenfetch
+    slack
     slop
     stack
     sxhkd
     transmission_gtk
     unstable.tdesktop
     upx
-    vim
+    vdirsyncer
+    vimHugeX
     unstable.vscode
-    wget
     wget
     xbanish
     xclip
@@ -78,17 +89,6 @@ in
     videoDrivers = [ "intel" ];
 
     libinput.enable = true;
-    synaptics.enable = false;
-    inputClassSections = [  # synaptics.enable = false; doesnt work, so add this inputclasssection
-      ''
-        Identifier "evdev touchpad off"
-        MatchIsTouchpad "on"
-        MatchDevicePath "/dev/input/event*"
-        Driver "evdev"
-        Option "Ignore" "true"
-      ''
-      ];
-
     config = ''
       Section "InputClass"
       Identifier "Enable libinput for TrackPoint"
@@ -123,26 +123,27 @@ in
     };
   };
 
-  programs.zsh = {
-    enable = true;
-    promptInit = ''
-      autoload -U promptinit
-      promptinit
-      prompt off
-
-      PROMPT="%F{green}%B%~%b%f $ "
-    '';
-  };
-
   environment.shellAliases = {
     lsa = "ls -lahF";
+    todo =
+      "cd .todo; and vim todo.md; and git add .; and git commit -m \"Changes on `date`\"; cd";
+  };
+
+  programs.fish = {
+    enable = true;
+    shellInit = ''
+      set PATH ~/.local/bin $PATH
+    '';
+    interactiveShellInit = ''
+      shuf -n 1 .remember 2> /dev/null | cat
+    '';
   };
 
   users.extraUsers.rleppink = {
     extraGroups  = [ "wheel" "networkmanager" ];
     isNormalUser = true;
     uid          = 1000;
-    shell        = pkgs.zsh;
+    shell        = "${pkgs.fish}/bin/fish";
   };
 
   systemd.user.services.dropbox = {
@@ -156,12 +157,33 @@ in
     };
   };
 
+  systemd.user.services.xbanish = {
+    enable = true;
+    description = "xbanish";
+    wantedBy = [ "default.target" ];
+
+    serviceConfig = {
+      ExecStart = "${pkgs.xbanish}/bin/xbanish";
+      Restart = "always";
+    };
+  };
+
+  systemd.user.services.dunst = {
+    enable = true;
+    description = "dunst daemon";
+    wantedBy = [ "default.target" ];
+
+    serviceConfig = {
+      ExecStart = "${pkgs.dunst}/bin/dunst";
+      Restart = "always";
+    };
+  };
+
   security.sudo.extraConfig = ''
 
     # Allow thinkpad-brightness to change the brightness
-    rleppink ALL = (root) NOPASSWD: /home/rleppink/bin/tpb
+    rleppink ALL = (root) NOPASSWD: /home/rleppink/.local/bin/tpb
   '';
 
-  system.stateVersion = "17.03";
-
+  system.stateVersion = "17.09";
 }

@@ -33,13 +33,13 @@ rofi.font: DejaVu Sans Mono 10
 ! rofi.location: 0
 
 ! Padding
-! rofi.padding: 5
+rofi.padding: 0
 
 ! Y-offset relative to location
-rofi.yoffset: -250
+rofi.yoffset: -200
 
 ! X-offset relative to location
-! rofi.xoffset: 0
+! rofi.xoffset: -508
 
 ! Always show number of lines
 rofi.fixed-num-lines: false
@@ -81,7 +81,7 @@ rofi.case-sensitive: false
 ! rofi.sidebar-mode: true
 
 ! Row height (in chars)
-! rofi.eh: 1
+! rofi.eh: 1.9
 
 ! Enable auto select mode
 ! rofi.auto-select: false
@@ -108,7 +108,7 @@ rofi.matching: regex
 ! rofi.line-margin: 2
 
 ! Padding within rows
-! rofi.line-padding: 1
+rofi.line-padding: 4
 
 ! Pre-set filter
 ! rofi.filter: 
