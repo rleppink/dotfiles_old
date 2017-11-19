@@ -48,6 +48,13 @@ addedKeys conf @ XConfig {modMask = modm} =
   , ((modm, xK_k), windowGo U False)
   , ((modm, xK_j), windowGo D False)
 
+    -- Go to workspace, show which one
+  , ((modm, xK_1), sequence_ [toggleOrView "browse", spawn "notify-send \"browse\""])
+  , ((modm, xK_2), sequence_ [toggleOrView "code"  , spawn "notify-send \"code\""  ])
+  , ((modm, xK_3), sequence_ [toggleOrView "read"  , spawn "notify-send \"read\""  ])
+  , ((modm, xK_4), sequence_ [toggleOrView "chat"  , spawn "notify-send \"chat\""  ])
+  , ((modm, xK_5), sequence_ [toggleOrView "etc"   , spawn "notify-send \"etc\""   ])
+
     -- Expand and shrink windows
   , ((modm .|. controlMask,                xK_l), sendMessage $ ExpandTowards R)
   , ((modm .|. controlMask,                xK_h), sendMessage $ ExpandTowards L)
