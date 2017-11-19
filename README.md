@@ -1,5 +1,7 @@
 # dotfiles
-My NixOS dotfiles. Preview:
+My NixOS dotfiles.
+
+Screenshots are a bit outdated, but better than nothing.
 
 ![Vim](https://i.imgur.com/OzCaRUf.png)
 
