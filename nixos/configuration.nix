@@ -19,6 +19,7 @@ in
     hostName = "rleppink-thinkpad-nixos";
     networkmanager.enable = true;
     firewall.enable = false;
+    dhcpcd.extraConfig = "noarp";
   };
 
   i18n = {
@@ -37,6 +38,7 @@ in
     dropbox
     dropbox-cli
     dunst
+    elmPackages.elm
     emacs
     exfat
     feh
@@ -85,7 +87,7 @@ in
   services.xserver = {
     enable = true;
     layout = "us";
-    xkbOptions = "eurosign:e, ctrl:swapcaps";
+    xkbOptions = "eurosign:e, ctrl:nocaps";
     videoDrivers = [ "intel" ];
 
     libinput.enable = true;
@@ -125,8 +127,7 @@ in
 
   environment.shellAliases = {
     lsa = "ls -lahF";
-    todo =
-      "cd .todo; and vim todo.md; and git add .; and git commit -m \"Changes on `date`\"; cd";
+    todo = "vim ~/Dropbox/docs/todo/personal.md";
   };
 
   programs.fish = {
