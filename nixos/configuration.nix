@@ -42,7 +42,6 @@ in
     emacs
     exfat
     feh
-    unstable.firefox-devedition-bin
     ffmpeg
     fzy
     ghc
@@ -52,6 +51,7 @@ in
     google-chrome
     haskellPackages.xmobar
     htop
+    httpie
     irssi
     keepassx2
     khal
@@ -59,9 +59,9 @@ in
     maim
     mpv
     nodejs
-    python36
     plantuml
     powertop
+    (python36.withPackages (ps: with ps; [ setuptools ]))
     ranger
     rfkill
     rofi
@@ -72,11 +72,12 @@ in
     stack
     sxhkd
     transmission_gtk
+    unstable.firefox-devedition-bin
     unstable.tdesktop
+    unstable.vscode
     upx
     vdirsyncer
     vimHugeX
-    unstable.vscode
     wget
     xbanish
     xclip
@@ -133,7 +134,8 @@ in
   programs.fish = {
     enable = true;
     shellInit = ''
-      set PATH ~/.local/bin $PATH
+      set PATH ~/.local/bin $PATH;
+      set -e SSH_ASKPASS;
     '';
     interactiveShellInit = ''
       shuf -n 1 .remember 2> /dev/null | cat

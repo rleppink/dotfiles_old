@@ -66,6 +66,11 @@ addedKeys conf @ XConfig {modMask = modm} =
   , ((shiftMask, 0x1008ff13), spawn "sudo /home/rleppink/.local/bin/tpb -i --binary 1")
   , ((shiftMask, 0x1008ff11), spawn "sudo /home/rleppink/.local/bin/tpb -d --binary 1")
   , ((0,         0x1008ff41), spawn "sudo /home/rleppink/.local/bin/tpb -t")
+  , ((shiftMask, 0x1008ff41), spawn "sudo /home/rleppink/.local/bin/tpb -f")
+
+    -- Toggle monitors
+  , ((modm, xK_F7), spawn "/home/rleppink/.local/bin/togglemon -l")
+  , ((modm, xK_F8), spawn "/home/rleppink/.local/bin/togglemon -e")
 
     -- XF86AudioMute
   , ((0, 0x1008ff12), spawn "amixer set Master toggle")
