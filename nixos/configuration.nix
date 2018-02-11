@@ -35,7 +35,8 @@ in
     binutils
     cabal-install
     calibre
-    dropbox
+    clisp
+    darktable
     dropbox-cli
     dunst
     elmPackages.elm
@@ -55,10 +56,11 @@ in
     irssi
     keepassx2
     khal
+    leiningen
     libnotify
     maim
     mpv
-    nodejs
+    nodejs-8_x
     plantuml
     powertop
     (python36.withPackages (ps: with ps; [ setuptools ]))
@@ -67,15 +69,16 @@ in
     rofi
     rxvt_unicode
     screenfetch
-    slack
     slop
     stack
     sxhkd
     transmission_gtk
     unstable.firefox-devedition-bin
-    unstable.tdesktop
+    tdesktop
+    tmpwatch
     unstable.vscode
     upx
+    unzip
     vdirsyncer
     vimHugeX
     wget
@@ -135,7 +138,10 @@ in
     enable = true;
     shellInit = ''
       set PATH ~/.local/bin $PATH;
+      set PATH ~/.npm-g/bin $PATH;
       set -e SSH_ASKPASS;
+
+      ~/.fehbg &
     '';
     interactiveShellInit = ''
       shuf -n 1 .remember 2> /dev/null | cat

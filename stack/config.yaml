@@ -16,6 +16,6 @@ templates:
 
 nix:
   enable: true
-  packages: [ x11 xorg.libXrandr pkgconfig gcc ncurses zlib ]
+  packages: [ x11 xorg.libXrandr pkgconfig gcc ncurses zlib gmp ]
   pure: true
 

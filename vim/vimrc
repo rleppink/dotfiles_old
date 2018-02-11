@@ -3,21 +3,6 @@ set rtp+=~/.vim/              " Does not seem to happen automatically in gvim
 set dir=~/.vim/swp
 
 
-"" Plug: Plugin manager
-call plug#begin('~/.vim/plugged')
-
-" General plugins
-Plug 'w0rp/ale'
-Plug 'tpope/vim-surround'
-Plug 'srstevenson/vim-picker'
-
-" Language specific plugins
-Plug 'neovimhaskell/haskell-vim'
-Plug 'LnL7/vim-nix'
-
-call plug#end()
-
-
 "" Basic settings
 syntax enable
 set encoding=utf-8
