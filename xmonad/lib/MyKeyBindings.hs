@@ -48,13 +48,6 @@ addedKeys conf @ XConfig {modMask = modm} =
   , ((modm, xK_k), windowGo U False)
   , ((modm, xK_j), windowGo D False)
 
-    -- Go to workspace, show which one
-  , ((modm, xK_1), sequence_ [toggleOrView "browse", spawn "notify-send \"browse\""])
-  , ((modm, xK_2), sequence_ [toggleOrView "code"  , spawn "notify-send \"code\""  ])
-  , ((modm, xK_3), sequence_ [toggleOrView "read"  , spawn "notify-send \"read\""  ])
-  , ((modm, xK_4), sequence_ [toggleOrView "chat"  , spawn "notify-send \"chat\""  ])
-  , ((modm, xK_5), sequence_ [toggleOrView "etc"   , spawn "notify-send \"etc\""   ])
-
     -- Expand and shrink windows
   , ((modm .|. controlMask,                xK_l), sendMessage $ ExpandTowards R)
   , ((modm .|. controlMask,                xK_h), sendMessage $ ExpandTowards L)
@@ -73,6 +66,11 @@ addedKeys conf @ XConfig {modMask = modm} =
   , ((shiftMask, 0x1008ff13), spawn "sudo /home/rleppink/.local/bin/tpb -i --binary 1")
   , ((shiftMask, 0x1008ff11), spawn "sudo /home/rleppink/.local/bin/tpb -d --binary 1")
   , ((0,         0x1008ff41), spawn "sudo /home/rleppink/.local/bin/tpb -t")
+  , ((shiftMask, 0x1008ff41), spawn "sudo /home/rleppink/.local/bin/tpb -f")
+
+    -- Toggle monitors
+  , ((modm, xK_F7), spawn "/home/rleppink/.local/bin/togglemon -l")
+  , ((modm, xK_F8), spawn "/home/rleppink/.local/bin/togglemon -e")
 
     -- XF86AudioMute
   , ((0, 0x1008ff12), spawn "amixer set Master toggle")
@@ -83,11 +81,11 @@ addedKeys conf @ XConfig {modMask = modm} =
     -- XF86AudioLowerVolume
   , ((0, 0x1008ff11), spawn "amixer set Master 5%- -M")
 
-    -- Show date
+    -- Show date and time
   , ((modm, xK_a), spawn "notify-send \"$(date +%A\\,\\ %d\\ %B\\,\\ %R)\"")
 
-    -- Show battery
-  , ((modm, xK_s), spawn "notify-send \"$(cat /sys/class/power_supply/BAT0/status), $(cat /sys/class/power_supply/BAT0/capacity)%\"")
+    -- Show battery status
+  , ((modm, xK_s), spawn "notify-send \"$(cat /sys/class/power_supply/BAT0/capacity)%, $(cat /sys/class/power_supply/BAT0/status)\"")
 
     -- Screenshots
   , ((0, xK_F10), spawn "maim ~/Pictures/$(date +%s).png")

@@ -19,6 +19,7 @@ in
     hostName = "rleppink-thinkpad-nixos";
     networkmanager.enable = true;
     firewall.enable = false;
+    dhcpcd.extraConfig = "noarp";
   };
 
   i18n = {
@@ -34,13 +35,14 @@ in
     binutils
     cabal-install
     calibre
-    dropbox
+    clisp
+    darktable
     dropbox-cli
     dunst
+    elmPackages.elm
     emacs
     exfat
     feh
-    unstable.firefox-devedition-bin
     ffmpeg
     fzy
     ghc
@@ -50,31 +52,35 @@ in
     google-chrome
     haskellPackages.xmobar
     htop
+    httpie
     irssi
     keepassx2
     khal
+    leiningen
     libnotify
     maim
     mpv
-    nodejs
-    python36
+    nodejs-8_x
     plantuml
     powertop
+    (python36.withPackages (ps: with ps; [ setuptools ]))
     ranger
     rfkill
     rofi
     rxvt_unicode
     screenfetch
-    slack
     slop
     stack
     sxhkd
     transmission_gtk
-    unstable.tdesktop
+    unstable.firefox-devedition-bin
+    tdesktop
+    tmpwatch
+    unstable.vscode
     upx
+    unzip
     vdirsyncer
     vimHugeX
-    unstable.vscode
     wget
     xbanish
     xclip
@@ -85,7 +91,7 @@ in
   services.xserver = {
     enable = true;
     layout = "us";
-    xkbOptions = "eurosign:e, ctrl:swapcaps";
+    xkbOptions = "eurosign:e, ctrl:nocaps";
     videoDrivers = [ "intel" ];
 
     libinput.enable = true;
@@ -125,14 +131,17 @@ in
 
   environment.shellAliases = {
     lsa = "ls -lahF";
-    todo =
-      "cd .todo; and vim todo.md; and git add .; and git commit -m \"Changes on `date`\"; cd";
+    todo = "vim ~/Dropbox/docs/todo/personal.md";
   };
 
   programs.fish = {
     enable = true;
     shellInit = ''
-      set PATH ~/.local/bin $PATH
+      set PATH ~/.local/bin $PATH;
+      set PATH ~/.npm-g/bin $PATH;
+      set -e SSH_ASKPASS;
+
+      ~/.fehbg &
     '';
     interactiveShellInit = ''
       shuf -n 1 .remember 2> /dev/null | cat
