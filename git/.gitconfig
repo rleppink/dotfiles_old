@@ -1,0 +1,5 @@
+[user]
+	email = ronaldleppink@gmail.com
+	name = Ronald Leppink
+[credential]
+	helper = cache --timeout=28800
