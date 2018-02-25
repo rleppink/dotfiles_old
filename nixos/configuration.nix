@@ -34,8 +34,9 @@ in
   environment.systemPackages = with pkgs; [
     binutils
     cabal-install
-    calibre
+    unstable.calibre
     clisp
+    davfs2
     darktable
     dropbox-cli
     dunst
@@ -130,8 +131,9 @@ in
   };
 
   environment.shellAliases = {
-    lsa = "ls -lahF";
+    lsa  = "ls -lahF";
     todo = "vim ~/Dropbox/docs/todo/personal.md";
+    scu  = "systemctl --user";
   };
 
   programs.fish = {
@@ -140,8 +142,6 @@ in
       set PATH ~/.local/bin $PATH;
       set PATH ~/.npm-g/bin $PATH;
       set -e SSH_ASKPASS;
-
-      ~/.fehbg &
     '';
     interactiveShellInit = ''
       shuf -n 1 .remember 2> /dev/null | cat

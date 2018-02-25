@@ -14,6 +14,10 @@ set showcmd
 set hidden
 
 
+"" Colors
+" colorscheme simplify
+
+
 "" Statusline
 set laststatus=2
 set statusline+=%F

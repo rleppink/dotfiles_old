@@ -58,6 +58,10 @@ addedKeys conf @ XConfig {modMask = modm} =
   , ((modm .|. controlMask .|. shiftMask , xK_j), sendMessage $ ShrinkFrom D)
   , ((modm .|. controlMask .|. shiftMask , xK_k), sendMessage $ ShrinkFrom U)
 
+    -- Expand and shrink floating windows
+  , ((modm .|. controlMask, xK_n), sendMessage Expand)
+  , ((modm .|. controlMask, xK_m), sendMessage Shrink)
+
     -- Toggle redshift
   , ((modm .|. controlMask, xK_r), spawn "systemctl --user start redshift")
   , ((modm .|. controlMask, xK_e), spawn "systemctl --user stop redshift")
