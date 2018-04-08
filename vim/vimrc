@@ -1,88 +1,64 @@
-set nocompatible              " be iMproved
-set rtp+=~/.vim/              " Does not seem to happen automatically in gvim
-set dir=~/.vim/swp
-
-
 "" Basic settings
-syntax enable
-set encoding=utf-8
-filetype off
-filetype plugin indent on       " load file type plugins + indentation
-set number                      " show line numbers
-autocmd FileType c,cc,cpp,h ClangFormatAutoEnable
-set showcmd
-set hidden
+set nocompatible                " be viMproved
+set rtp+=$HOME/.vim/            " Does not seem to happen automatically in gvim
+set dir=$HOME/.vim/swp          " Set swap dir
+syntax enable                   " I like syntax highlighting
+set encoding=utf-8              " Good default
+filetype plugin indent on       " Load file type plugins + indentation
+set number                      " Show line numbers
+set hidden                      " Allow switching buffers without saving
 
+"" Plug plugins
+"" call plug#begin()
+
+"" Language server protocol - vim client
+"" Plug 'prabirshrestha/async.vim'
+"" Plug 'prabirshrestha/vim-lsp'
+
+"" Plug 'tpope/vim-surround'
+
+"" call plug#end()
 
 "" Colors
-" colorscheme simplify
-
-
-"" Statusline
-set laststatus=2
-set statusline+=%F
-set statusline+=%=%c
-hi StatusLine term=reverse ctermbg=254 cterm=none
-
+set background=light            " Light is good
+colorscheme simplify            " Simple is good
 
 "" Whitespace
-set nowrap                      " don't wrap lines
-set tabstop=2
-set shiftwidth=2
-set expandtab                   " spaces instead of tabs
-set backspace=indent,eol,start  " backspace through everything in insert mode
+set nowrap                      " Don't wrap lines
+set expandtab                   " Spaces instead of tabs
+set tabstop=2                   " Insert 2 spaces on press of tab
+set shiftwidth=2                " Indentation size
+set backspace=indent,eol,start  " Backspace through everything in insert mode
 
+"" Statusline
+set laststatus=2                " Always show statusline
+set statusline+=%F              " Add fully qualified filename to statusline
+set statusline+=%=              " Add spacer
+set statusline+=\ %l:%L         " Add current:total lines
+set statusline+=\ ::\ %c        " Add current column
 
 "" Searching
-set hlsearch                    " highlight matches
-set incsearch                   " incremental searching
-set ignorecase                  " searches are case insensitive...
-set smartcase                   " ... unless they contain at least one capital letter
-
+set hlsearch                    " Highlight matches
+set incsearch                   " Keep searching as you type
+set ignorecase                  " Searches are case insensitive
+set smartcase                   " Unless they contain at least one capital letter
 
 "" Cursor
-set scrolloff=10
-
-set cursorline
-hi CursorLine term=reverse cterm=none ctermbg=254
-
-set colorcolumn=100
-"" hi ColorColumn term=reverse ctermbg=239
-
-
-"" Change cursor to caret in insert mode or block caret in normal mode
-"let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-"let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-let &t_SI = "\e[6 q"
-let &t_EI = "\e[2 q"
-
-
-"" File syntax detection
-au BufNewFile,BufRead *.md set filetype=markdown
-au BufNewFile,BufRead *.javap setf java-bytecode
-au BufNewFile,BufRead *.jasmin setf java-bytecode
-au BufNewFile,BufRead *.qss setf css
-
-"" Plugin settings
-" ale
-let g:ale_lint_on_text_changed = 'normal'
-" vim-picker
-nmap <unique> <C-P> <Plug>PickerEdit
-nmap <unique> <Space> <Plug>PickerBuffer
-
+set scrolloff=10                " Show 10 lines above or below cursor
+set colorcolumn=100             " Know when the width gets too big
+set cursorline                  " Show a line at the current cursor position
+let &t_SI = "\e[6 q"            " Change cursor to caret in insert mode
+let &t_EI = "\e[2 q"            " Change cursor to block in normal mode
 
 "" Tab completion in menus
 set completeopt=menuone,menu,longest
 set wildignore+=*\\tmp\\*,*.swp,*.swo,*.zip,.git,.cabal-sandbox
 set wildmode=longest,list,full
 set wildmenu
-set completeopt+=longest
-
 
 "" Whitespace / invisible characters
 set listchars=eol:\ ,tab:\⇀\ ,trail:~,extends:>,precedes:<
-set list
-
+set list                        " Make whitespace visible
 
 "" gvim
 set guifont="DejaVu Sans Mono":h9:cANSI
@@ -90,7 +66,7 @@ set guioptions-=T            " Remove toolbar
 set guioptions-=m            " Remove menu
 set guioptions-=r            " Remove right scrollbar
 set guioptions-=L            " Remove left scrollbar
-"set lines=40 columns=110 linespace=0
+set lines=40 columns=120 linespace=0
 set vb                       " visual bell
 set t_vb=""                  " no beeping
 set mousemodel=popup_setpos
@@ -98,10 +74,5 @@ set mousemodel=popup_setpos
 "" Windows specific settings & overrides
 if has("win32")
     set guifont=DejaVu_Sans_Mono:h9:cANSI
-    set lines=74 columns=180 linespace=0
-    set cursorline
-
-    "" Colors
-    colorscheme base16-chalk
-    set background=light
+    set lines=80 columns=136 linespace=0
 endif
