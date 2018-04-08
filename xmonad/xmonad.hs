@@ -6,6 +6,7 @@ import XMonad.Hooks.EwmhDesktops
 
 import XMonad.Layout.BinarySpacePartition
 import XMonad.Layout.Spacing
+import XMonad.Layout.ThreeColumns
 
 import MyKeyBindings
 
@@ -28,7 +29,7 @@ myConfig = ewmh def
   , focusFollowsMouse  = False
   , handleEventHook    = fullscreenEventHook
   , keys               = myKeys
-  , layoutHook         = spacingWithEdge 2 emptyBSP
+  , layoutHook         = spacingWithEdge 2 emptyBSP ||| spacingWithEdge 2 (ThreeColMid 1 (3/100) (2/3))
   , modMask            = mod4Mask
   , normalBorderColor  = middleColor
   , terminal           = "urxvt"
