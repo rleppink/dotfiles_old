@@ -7,6 +7,7 @@ set encoding=utf-8              " Good default
 filetype plugin indent on       " Load file type plugins + indentation
 set number                      " Show line numbers
 set hidden                      " Allow switching buffers without saving
+set showcmd                     " Info about what we're doing
 
 "" Plug plugins
 "" call plug#begin()
@@ -59,6 +60,12 @@ set wildmenu
 "" Whitespace / invisible characters
 set listchars=eol:\ ,tab:\⇀\ ,trail:~,extends:>,precedes:<
 set list                        " Make whitespace visible
+
+"" Keymaps
+nmap <Space> <Leader>
+nmap <Leader>fed :e ~/.vimrc<Enter>
+nmap <Leader>bd :bdelete<Enter>
+nmap <Leader>bb :ls<Cr>:b<Space>
 
 "" gvim
 set guifont="DejaVu Sans Mono":h9:cANSI
