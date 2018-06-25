@@ -73,8 +73,7 @@ addedKeys conf @ XConfig {modMask = modm} =
   , ((shiftMask, 0x1008ff41), spawn "sudo /home/rleppink/.local/bin/tpb -f")
 
     -- Toggle monitors
-  , ((modm, xK_F7), spawn "/home/rleppink/.local/bin/togglemon -l")
-  , ((modm, xK_F8), spawn "/home/rleppink/.local/bin/togglemon -e")
+  , ((modm, xK_F8), spawn "cd /home/rleppink/Projects/monmon/ && nix-shell --run \"python monmon.py\"")
 
     -- XF86AudioMute
   , ((0, 0x1008ff12), spawn "amixer set Master toggle")
@@ -86,13 +85,14 @@ addedKeys conf @ XConfig {modMask = modm} =
   , ((0, 0x1008ff11), spawn "amixer set Master 5%- -M")
 
     -- Show date and time
-  , ((modm, xK_a), spawn "notify-send \"$(date +%A\\,\\ %d\\ %B\\,\\ %R)\"")
+  , ((modm, xK_a), spawn "notify-send \"$(TZ=Asia/Tokyo date +%A\\,\\ %d\\ %B\\,\\ %R\\ %Z) \n$(TZ=Europe/Amsterdam date +%A\\,\\ %d\\ %B\\,\\ %R\\ %Z)\n\"")
+  -- , ((modm, xK_a), spawn "notify-send \"$(/home/rleppink/Projects/nice-time/nicetime.py)\"")
 
     -- Show battery status
   , ((modm, xK_s), spawn "notify-send \"$(cat /sys/class/power_supply/BAT0/capacity)%, $(cat /sys/class/power_supply/BAT0/status)\"")
 
     -- Screenshots
-  , ((0, xK_F10), spawn "maim ~/Pictures/$(date +%s).png")
+  --, ((0, xK_F10), spawn "maim ~/Pictures/$(date +%s).png")
   , ((0, xK_F9 ), spawn "maim -s | xclip -selection clipboard -t image/png")
   ]
 

@@ -19,9 +19,9 @@ main =
 
 
 -- TODO: Get these colors from xrdb
-backgroundColor   = "#FEFEFE"
+backgroundColor   = "#FFFFFF"
 middleColor       = "#AEAEAE"
-foregroundColor   = "#0E0E0E"
+foregroundColor   = "#000000"
 
 myConfig = ewmh def
   { borderWidth        = 1
