@@ -9,17 +9,6 @@ set number                      " Show line numbers
 set hidden                      " Allow switching buffers without saving
 set showcmd                     " Info about what we're doing
 
-"" Plug plugins
-call plug#begin()
-
-Plug 'elmcast/elm-vim'
-Plug 'Yggdroot/LeaderF'
-
-call plug#end()
-
-" Plugin configuration
-let g:Lf_WindowHeight = 10
-
 "" Colors
 set background=light            " Light is good
 colorscheme fruchtig
@@ -72,6 +61,7 @@ nmap <Space> <Leader>
 nmap <Leader>frc :e ~/.vimrc<Enter>
 nmap <Leader>fs :w<Enter>
 nmap <Leader>fe :Explore<Enter>
+nmap <Leader>qq :q<Enter>
 let g:Lf_ShortcutF = '<leader>pf'
 
 " Buffers
