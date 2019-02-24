@@ -56,6 +56,7 @@ set list                        " Make whitespace visible
 
 "" Keymaps
 nmap <Space> <Leader>
+nmap <C-l> zz
 
 " Files
 nmap <Leader>frc :e ~/.vimrc<Enter>
