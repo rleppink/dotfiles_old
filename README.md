@@ -1,7 +1,7 @@
 # dotfiles
 My NixOS dotfiles.
 
-Screenshots are a bit outdated, but better than nothing.
+Screenshots are really outdated, but better than nothing I guess?
 
 ![Vim](https://i.imgur.com/OzCaRUf.png)
 
