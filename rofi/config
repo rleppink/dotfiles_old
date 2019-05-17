@@ -2,7 +2,7 @@
 rofi.modi: drun
 
 ! Window width
-rofi.width: 25
+rofi.width: 22
 
 ! Number of lines
 rofi.lines: 5
@@ -11,7 +11,7 @@ rofi.lines: 5
 rofi.columns: 1
 
 ! Font to use
-rofi.font: DejaVu Sans Mono 10
+rofi.font: DejaVu Sans Mono 7.5
 
 ! Color scheme for normal row
 ! rofi.color-normal: #FAFAFA,#222222,#FAFAFA,#FFB6C1,#FAFAFA
@@ -81,7 +81,7 @@ rofi.case-sensitive: false
 ! rofi.sidebar-mode: true
 
 ! Row height (in chars)
-! rofi.eh: 1.9
+rofi.eh: 1.5
 
 ! Enable auto select mode
 ! rofi.auto-select: false
@@ -114,7 +114,7 @@ rofi.line-padding: 4
 ! rofi.filter: 
 
 ! Separator style (none, dash, solid)
-rofi.separator-style: solid
+rofi.separator-style: none
 
 ! Hide scroll-bar
 rofi.hide-scrollbar: true

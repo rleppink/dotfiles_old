@@ -1,11 +1,11 @@
-#include "/home/rleppink/.xcolors-hc"
+#include "/home/rleppink/.xcolors-parch"
 
 ! X config
 Xcursor.size: 2
 
 ! URxvt config
 URxvt.font: xft:DejaVuSansMono:size=8
-URxvt.internalBorder: 8
+URxvt.internalBorder: 4
 URxvt.pointerBlank: true
 URxvt.saveLines: 10000
 URxvt.scrollBar: False
@@ -15,8 +15,8 @@ Xft.antialias: true
 Xft.autohint: false
 Xft.dpi: 96
 !Xft.dpi: 120
-Xft.hinting: false
-Xft.hintstyle: hintslight
+Xft.hinting: 1
+Xft.hintstyle: hintfull
 Xft.lcdfilter: lcddefault
 Xft.rgba: rgb
 
@@ -24,6 +24,6 @@ Xft.rgba: rgb
 ! rofi apparently doesnt support xresources colors from its
 ! own config file in ~/.config/rofi/config
 !                  bg       fg       bg-alt      hl-bg    hl-fg
-rofi.color-normal: #FEFEFE, #0E0E0E, #FEFEFE, #DEDEDE, #0E0E0E
-rofi.color-window: #FEFEFE, #0E0E0E, #AEAEAE, #AEAEAE, #AEAEAE
+rofi.color-normal: #FFFFFF, #000000, #FFFFFF, #EFEFEF, #000000
+rofi.color-window: #FFFFFF, #000000, #EEEEEE, #EFEFEF, #EEEEEE
 

@@ -31,9 +31,8 @@ myConfig = ewmh def
   , focusFollowsMouse  = False
   , handleEventHook    = fullscreenEventHook
   , keys               = myKeys
-  , layoutHook         =   spacingWithEdge 2 emptyBSP
-                       ||| spacingWithEdge 2 (ThreeColMid 1 (3/100) (2/3))
-                       ||| noBorders emptyBSP
+  , layoutHook         =   smartBorders $ smartSpacingWithEdge 1 emptyBSP
+                       ||| smartSpacingWithEdge 1 (ThreeColMid 1 (3/100) (2/3))
   , modMask            = mod4Mask
   , normalBorderColor  = middleColor
   , terminal           = "urxvt"

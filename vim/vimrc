@@ -11,7 +11,7 @@ set showcmd                     " Info about what we're doing
 
 "" Colors
 set background=light            " Light is good
-colorscheme fruchtig
+"" colorscheme fruchtig
 
 "" Whitespace
 set nowrap                      " Don't wrap lines
@@ -35,7 +35,7 @@ set smartcase                   " Unless they contain at least one capital lette
 
 "" Cursor
 set scrolloff=10                        " Show 10 lines above or below cursor
-set colorcolumn=80,100                  " Know when the width gets too big
+"" set colorcolumn=80,100                  " Know when the width gets too big
 set cursorline                          " Show a line at the current cursor position
 hi CursorLine cterm=NONE ctermbg=254    " But not too distracting
 hi CursorColumn cterm=NONE ctermbg=254  " Same for when using this
@@ -75,7 +75,7 @@ nmap <Leader>ts :if exists("g:syntax_on") <Bar> syntax off <Bar> else <Bar> synt
 nmap <Leader>th :nohl<Cr>
 
 "" gvim
-set guifont=DejaVu\ Sans\ Mono\ 8
+set guifont=DejaVu\ Sans\ Mono\ 7.5
 set guioptions-=T            " Remove toolbar
 set guioptions-=m            " Remove menu
 set guioptions-=r            " Remove right scrollbar

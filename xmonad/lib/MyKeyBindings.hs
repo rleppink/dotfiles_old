@@ -68,27 +68,27 @@ addedKeys conf @ XConfig {modMask = modm} =
 
     -- Brightness control
   , ((0,         0x1008ff41), spawn "sudo /home/rleppink/.local/bin/tpb -t")
-  , ((0,         xK_F3), spawn "sudo /home/rleppink/.local/bin/tpb -t")
-  , ((0,         xK_F1), spawn "sudo /home/rleppink/.local/bin/tpb -d")
-  , ((0,         xK_F2), spawn "sudo /home/rleppink/.local/bin/tpb -i")
+  , ((modm,         xK_F3), spawn "sudo /home/rleppink/.local/bin/tpb -t")
+  , ((modm,         xK_F1), spawn "sudo /home/rleppink/.local/bin/tpb -d")
+  , ((modm,         xK_F2), spawn "sudo /home/rleppink/.local/bin/tpb -i")
 
     -- Toggle monitors
-  , ((modm, xK_F8), spawn "cd /home/rleppink/Projects/monmon/ && nix-shell --run \"python monmon.py\"")
+  , ((modm, xK_F8), spawn "cd /home/rleppink/projects/monmon/ && nix-shell --run \"python monmon.py\"")
 
     -- XF86AudioMute
   , ((0, 0x1008ff12), spawn "amixer set Master toggle > /dev/null")
-  , ((0, xK_F10), spawn "amixer set Master toggle > /dev/null")
+  , ((modm, xK_F10), spawn "amixer set Master toggle > /dev/null")
 
     -- XF86AudioRaiseVolume
   , ((0, 0x1008ff13), spawn "amixer set Master 5%+ -M > /dev/null")
-  , ((0, xK_F12), spawn "amixer set Master 5%+ -M > /dev/null")
+  , ((modm, xK_F12), spawn "amixer set Master 5%+ -M > /dev/null")
 
     -- XF86AudioLowerVolume
   , ((0, 0x1008ff11), spawn "amixer set Master 5%- -M > /dev/null")
-  , ((0, xK_F11), spawn "amixer set Master 5%- -M > /dev/null")
+  , ((modm, xK_F11), spawn "amixer set Master 5%- -M > /dev/null")
 
     -- Open todo
-  , ((0, xK_F6), spawn "gvim ~/Documents/todo.md")
+  --, ((0, xK_F6), spawn "gvim ~/Documents/todo.md")
 
     -- Show date and time
   -- , ((modm, xK_a), spawn "notify-send \"$(TZ=Europe/Amsterdam date +%A\\,\\ %d\\ %B\\,\\ %R\\ %Z)\n$(TZ=Asia/Tokyo date +%A\\,\\ %d\\ %B\\,\\ %R\\ %Z) \n\"")
@@ -99,7 +99,7 @@ addedKeys conf @ XConfig {modMask = modm} =
 
     -- Screenshots
   --, ((0, xK_F10), spawn "maim ~/Pictures/$(date +%s).png")
-  , ((0, xK_F9), spawn "maim -s | xclip -selection clipboard -t image/png")
-  , ((shiftMask, xK_F9), spawn "maim -s ~/Pictures/screenshots/$(date +%s).png")
+  , ((modm, xK_F9), spawn "maim -s | xclip -selection clipboard -t image/png")
+  , ((modm .|. shiftMask, xK_F9), spawn "maim -s ~/Pictures/screenshots/$(date +%s).png")
   ]
 

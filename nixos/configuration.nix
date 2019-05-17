@@ -1,4 +1,3 @@
-
 { config, pkgs, ... }:
 
 let
@@ -6,20 +5,43 @@ let
 in
 {
   imports =
-    [
-    /etc/nixos/hardware-configuration.nix
+    [ # Include the results of the hardware scan.
+      ./hardware-configuration.nix
     ];
 
-  hardware.pulseaudio.enable = true;
+  # Supposedley better for the SSD.
+  fileSystems."/".options = [ "noatime" "nodiratime" "discard" ];
 
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader = { 
+    efi = {
+      canTouchEfiVariables = true;
+      efiSysMountPoint = "/boot";
+    };
+
+    grub = {
+      version = 2;
+      enable = true;
+      device = "nodev";
+      efiSupport = true;
+    };
+  };
+
+  # Specify encrypted drive
+  boot.initrd.luks.devices = [
+    {
+      name = "root";
+      device = "/dev/disk/by-uuid/453b20e3-7d9b-49bd-a5eb-90881c15f159";
+      preLVM = true;
+      allowDiscards = true;
+    }
+  ];
 
   networking = {
     hostName = "rleppink-thinkpad-nixos";
     networkmanager.enable = true;
-    firewall.enable = false;
-    dhcpcd.extraConfig = "noarp";
+    nameservers = [ "1.1.1.1" "1.0.0.1" "4.4.4.4" "8.8.8.8" ];
+
+    firewall.enable = true;
   };
 
   i18n = {
@@ -31,63 +53,98 @@ in
   time.timeZone = "Europe/Amsterdam";
 
   nixpkgs.config.allowUnfree = true;
+
   environment.systemPackages = with pkgs; [
-    (python36.withPackages (ps: with ps; [ setuptools ]))
-    binutils
-    cabal-install
-    clisp
-    darktable
-    davfs2
-    dunst
-    emacs
-    exfat
-    feh
-    ffmpeg
-    fzy
-    ghc
-    gimp
-    git
-    gnumake
-    google-chrome
-    gradle
-    htop
-    httpie
-    irssi
-    javaPackages.junit_4_12
-    jetbrains.idea-community
-    keepassx2
-    leiningen
-    libnotify
-    maim
-    mpv
-    ncdu
-    neofetch
-    nodejs-8_x
-    openjdk
-    plantuml
-    powertop
-    ranger
-    rfkill
-    rofi
-    rxvt_unicode
-    stack
-    sxhkd
-    tdesktop
-    tmpwatch
-    transmission_gtk
-    unstable.calibre
-    unstable.dropbox-cli
-    unstable.firefox-devedition-bin
-    unstable.vscode
-    unzip
-    upx
-    vimHugeX
-    wget
-    xbanish
-    xclip
-    zathura
+    binutils-unwrapped
+    calc                             # Terminal calculator
+    chromium                         # Alternative browser, for testing
+    crawlTiles                       # Crawling
+    crawl                            # Crawling
+    darktable                        # RAW photo editor
+    davfs2                           # Mount Stack's WebDAV
+    dejavu_fonts                     # Best font
+    dunst                            # Notification viewer
+    emacs                            # Editor
+    exfat                            # Filesystem
+    feh                              # Image viewer
+    gcc                              # Compile stuff
+    gimp                             # Image editor
+    gimpPlugins.resynthesizer        # 'Content aware' plugin
+    git                              # Version control
+    gnumake                          # Handy to have installed
+    gnum4                            # Something needed this...
+    go                               # Simple language, good stuff
+    irssi                            # IRC
+    keepassxc                        # Password manager
+    libnotify                        # Allow notifications
+    maim                             # Screenshots
+    mpv                              # Video viewer
+    ncdu                             # See where disk space went
+    neofetch                         # Stylin'
+    owncloud-client                  # File sync
+    openjdk                          # Don't remember what needed this
+    powertop                         # Laptop battery control
+    ranger                           # File manager
+    ripgrep                          # Better grep, fuzzy finding
+    rfkill                           # Disable bluetooth
+    rofi                             # Application launcher
+    rxvt_unicode                     # Terminal
+    rxvt_unicode.terminfo            # Terminal
+    transmission_gtk                 # Torrent client
+    tree                             # Better overview
+    unstable.calibre                 # Ebook manager
+    unstable.firefox-devedition-bin  # Browser
+    unstable.steam                   # Games!
+    unstable.tdesktop                # Instant messenging
+    sshfs                            # Remote file editing sometimes
+    unzip                            # What it says
+    vimHugeX                         # Editor, X integration
+    wget                             # Download stuff
+    xbanish                          # Hide that pesky cursor
+    xclip                            # Copy stuff to clipboard mostly
+    zathura                          # PDF viewer
+    zip                              # What it says
+
+    # Bluetooth stuff
+    blueman
+    bluez
+    bluez-tools
+
+    # Audio stuff
+    pavucontrol
+    pulseaudioFull
+
+    # Haskell
+    unstable.stack
+
+    # ThinkPad battery charge thresholds and recalibration
+    linuxPackages.acpi_call
+
+    # Simple 2d game development
+    lua
+    love_11
+
+    # Trying out fsharp
+    dotnet-sdk
+    mono
+    fsharp
   ];
 
+  sound.enable = true;
+
+  hardware.pulseaudio = {
+    enable = true;
+    support32Bit = true;
+    zeroconf.discovery.enable = true;
+    package = pkgs.pulseaudioFull;
+    systemWide = false;
+  };
+
+  # For Steam, according to NixOS wiki
+  hardware.opengl.driSupport32Bit = true;
+
+  # Sometimes I want this enabled, but generally not
+  hardware.bluetooth.enable = false;
 
   services.xserver = {
     enable = true;
@@ -95,28 +152,30 @@ in
     xkbOptions = "eurosign:e, ctrl:nocaps";
     videoDrivers = [ "intel" ];
 
+    autoRepeatDelay = 200;
+    autoRepeatInterval = 40;
+
     libinput.enable = true;
-    config = ''
-      Section "InputClass"
-      Identifier "Enable libinput for TrackPoint"
-      MatchIsPointer "on"
-      Driver         "libinput"
-      Option         "ScrollMethod" "button"
-      Option         "ScrollButton" "8"
-      EndSection
-      '';
 
     desktopManager = {
       default = "none";
       xterm.enable = false;
     };
 
-    displayManager.lightdm.enable = true;
+    displayManager = {
+      lightdm.enable =  true;
+
+      sessionCommands = ''
+        ${pkgs.xlibs.xset}/bin/xset -dpms
+        ${pkgs.xlibs.xset}/bin/xset s off
+        ${pkgs.xlibs.xset}/bin/xset r rate 200 40
+      '';
+    };
 
     windowManager = {
+      default = "xmonad";
       xmonad.enable = true;
       xmonad.enableContribAndExtras = true;
-      default = "xmonad";
     };
   };
 
@@ -130,85 +189,43 @@ in
     };
   };
 
-
-  services.udev = {
-    extraRules = ''
-      # UDEV Rules for Teensy boards, http://www.pjrc.com/teensy/
-      #
-      # The latest version of this file may be found at:
-      #   http://www.pjrc.com/teensy/49-teensy.rules
-      #
-      # This file must be placed at:
-      #
-      # /etc/udev/rules.d/49-teensy.rules    (preferred location)
-      #   or
-      # /lib/udev/rules.d/49-teensy.rules    (req'd on some broken systems)
-      #
-      # To install, type this command in a terminal:
-      #   sudo cp 49-teensy.rules /etc/udev/rules.d/49-teensy.rules
-      #
-      # Or use the alternate way (from this forum message) to download and install:
-      #   https://forum.pjrc.com/threads/45595?p=150445&viewfull=1#post150445
-      #
-      # After this file is installed, physically unplug and reconnect Teensy.
-      #
-      ATTRS{idVendor}=="16c0", ATTRS{idProduct}=="04[789B]?", ENV{ID_MM_DEVICE_IGNORE}="1"
-      ATTRS{idVendor}=="16c0", ATTRS{idProduct}=="04[789A]?", ENV{MTP_NO_PROBE}="1"
-      SUBSYSTEMS=="usb", ATTRS{idVendor}=="16c0", ATTRS{idProduct}=="04[789ABCD]?", MODE:="0666"
-      KERNEL=="ttyACM*", ATTRS{idVendor}=="16c0", ATTRS{idProduct}=="04[789B]?", MODE:="0666"
-      #
-      # If you share your linux system with other users, or just don't like the
-      # idea of write permission for everybody, you can replace MODE:="0666" with
-      # OWNER:="yourusername" to create the device owned by you, or with
-      # GROUP:="somegroupname" and mange access using standard unix groups.
-      #
-      #
-      # If using USB Serial you get a new device each time (Ubuntu 9.10)
-      # eg: /dev/ttyACM0, ttyACM1, ttyACM2, ttyACM3, ttyACM4, etc
-      #    apt-get remove --purge modemmanager     (reboot may be necessary)
-      #
-      # Older modem proding (eg, Ubuntu 9.04) caused very slow serial device detection.
-      # To fix, add this near top of /lib/udev/rules.d/77-nm-probe-modem-capabilities.rules
-      #   SUBSYSTEMS=="usb", ATTRS{idVendor}=="16c0", ATTRS{idProduct}=="04[789]?", GOTO="nm_modem_probe_end" 
-      #
-    '';
+  services.tlp = {
+    enable = true;
   };
 
+  # Don't really like using emacs server
+  services.emacs.enable = false;
+
+  users.extraUsers.rleppink = {
+    isNormalUser = true;
+    uid = 1000;
+    extraGroups = [ "wheel" "networkmanager" "sound" "pulse" "audio" ];
+  };
 
   environment.shellAliases = {
     lsa  = "ls -lahF";
-    todo = "vim ~/Dropbox/docs/todo/personal.md";
     scu  = "systemctl --user";
   };
 
-  programs.fish = {
-    enable = true;
-    shellInit = ''
-      set PATH ~/.local/bin $PATH;
-      set PATH ~/.npm-g/bin $PATH;
-      set -e SSH_ASKPASS;
-    '';
+  environment.variables.EDITOR = "vim";
+
+  # Ignore case in bash tab autocomplete
+  environment.etc."inputrc".text = "set completion-ignore-case on";
+
+  programs.bash = {
+    promptInit =
+      let
+        ps_clear = "\\[\\e[0m\\]";
+        italic = "\\[\\e[3m\\]";
+        bold = "\\[\\e[1m\\]";
+        pwd = "\\w";
+        separator = "λ";
+      in
+        ''PS1="${italic}${pwd}${ps_clear} ${bold}${separator}${ps_clear} "'';
+
     interactiveShellInit = ''
-      shuf -n 1 .remember 2> /dev/null | cat
+      HISTCONTROL=erasedups
     '';
-  };
-
-  users.extraUsers.rleppink = {
-    extraGroups  = [ "wheel" "networkmanager" ];
-    isNormalUser = true;
-    uid          = 1000;
-    shell        = "${pkgs.fish}/bin/fish";
-  };
-
-  systemd.user.services.xbanish = {
-    enable = true;
-    description = "xbanish";
-    wantedBy = [ "default.target" ];
-
-    serviceConfig = {
-      ExecStart = "${pkgs.xbanish}/bin/xbanish";
-      Restart = "always";
-    };
   };
 
   systemd.user.services.dunst = {
@@ -222,11 +239,42 @@ in
     };
   };
 
+  systemd.user.services.xbanish = {
+    enable = true;
+    description = "xbanish";
+    wantedBy = [ "default.target" ];
+
+    serviceConfig = {
+      ExecStart = "${pkgs.xbanish}/bin/xbanish";
+      Restart = "always";
+    };
+  };
+
+  # Notify me when it's getting late and I need to stop staring at a screen
+  systemd.user.services.alertTime = {
+    enable = true;
+    description = "Alert me of the time";
+    wantedBy = [ "multi-user.target" ];
+
+    startAt = "*-*-* 21:00,30:00";
+
+    serviceConfig = {
+      ExecStart = "${pkgs.libnotify}/bin/notify-send -t 0 \"LOOK AT THE TIME\"";
+      Restart = "no";
+    };
+  };
+
+
   security.sudo.extraConfig = ''
 
     # Allow thinkpad-brightness to change the brightness
     rleppink ALL = (root) NOPASSWD: /home/rleppink/.local/bin/tpb
   '';
 
-  system.stateVersion = "17.09";
+  # This value determines the NixOS release with which your system is to be
+  # compatible, in order to avoid breaking some software such as database
+  # servers. You should change this only after NixOS release notes say you
+  # should.
+  system.stateVersion = "18.09";
+
 }
