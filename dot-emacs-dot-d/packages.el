@@ -27,7 +27,3 @@
   :ensure t
   :init (setq evil-want-C-u-scroll t)
   :config (evil-mode))
-
-
-;; F#
-(use-package fsharp-mode :ensure t)

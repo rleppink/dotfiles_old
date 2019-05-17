@@ -123,11 +123,6 @@ in
     # Simple 2d game development
     lua
     love_11
-
-    # Trying out fsharp
-    dotnet-sdk
-    mono
-    fsharp
   ];
 
   sound.enable = true;
