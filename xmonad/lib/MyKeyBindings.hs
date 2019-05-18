@@ -87,19 +87,14 @@ addedKeys conf @ XConfig {modMask = modm} =
   , ((0, 0x1008ff11), spawn "amixer set Master 5%- -M > /dev/null")
   , ((modm, xK_F11), spawn "amixer set Master 5%- -M > /dev/null")
 
-    -- Open todo
-  --, ((0, xK_F6), spawn "gvim ~/Documents/todo.md")
-
     -- Show date and time
-  -- , ((modm, xK_a), spawn "notify-send \"$(TZ=Europe/Amsterdam date +%A\\,\\ %d\\ %B\\,\\ %R\\ %Z)\n$(TZ=Asia/Tokyo date +%A\\,\\ %d\\ %B\\,\\ %R\\ %Z) \n\"")
   , ((modm, xK_a), spawn "notify-send \"$(TZ=Europe/Amsterdam date +%A\\,\\ %d\\ %B\\,\\ %R\\ %Z)\"")
 
     -- Show battery status
   , ((modm, xK_s), spawn "notify-send \"$(cat /sys/class/power_supply/BAT0/capacity)%, $(cat /sys/class/power_supply/BAT0/status)\"")
 
     -- Screenshots
-  --, ((0, xK_F10), spawn "maim ~/Pictures/$(date +%s).png")
-  , ((modm, xK_F9), spawn "maim -s | xclip -selection clipboard -t image/png")
-  , ((modm .|. shiftMask, xK_F9), spawn "maim -s ~/Pictures/screenshots/$(date +%s).png")
+  , ((modm,               xK_F9), spawn "maim -s | xclip -selection clipboard -t image/png")
+  , ((modm .|. shiftMask, xK_F9), spawn "maim -s ~/pictures/screenshots/$(date +%s).png")
   ]
 

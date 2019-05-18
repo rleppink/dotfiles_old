@@ -1,1 +1,11 @@
-/home/rleppink/.config/zathura/zathurarc
+unmap d
+
+map t toggle_statusbar
+
+set default-fg "#000000"
+set default-bg "#FFFFEA"
+
+set recolor-darkcolor "#000000"
+set recolor-lightcolor "#FFFFEA"
+set recolor true
+

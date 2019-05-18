@@ -113,12 +113,12 @@
    `(org-done ((t (:foreground ,fg-light))))
    `(org-hide ((t (:foreground ,bg))))
    ;; use :overline to give headings more top margin
-   `(org-level-1 ((t (:foreground ,fg :weight semi-bold :height 1.3))))
-   `(org-level-2 ((t (:foreground ,fg :weight semi-bold :height 1.1 :overline ,bg))))
-   `(org-level-3 ((t (:foreground ,fg :weight semi-bold :height 1.1 :overline ,bg))))
-   `(org-level-4 ((t (:foreground ,fg :weight semi-bold :height 1.1 :overline ,bg))))
-   `(org-level-5 ((t (:foreground ,fg :weight semi-bold :height 1.1 :overline ,bg))))
-   `(org-level-6 ((t (:foreground ,fg :weight semi-bold :height 1.1 :overline ,bg))))
+   `(org-level-1 ((t (:foreground ,fg :weight semi-bold))))
+   `(org-level-2 ((t (:foreground ,fg :weight semi-bold :overline ,bg))))
+   `(org-level-3 ((t (:foreground ,fg :weight semi-bold :overline ,bg))))
+   `(org-level-4 ((t (:foreground ,fg :weight semi-bold :overline ,bg))))
+   `(org-level-5 ((t (:foreground ,fg :weight semi-bold :overline ,bg))))
+   `(org-level-6 ((t (:foreground ,fg :weight semi-bold :overline ,bg))))
    `(org-link ((t (:foreground ,fg :underline t))))
    `(org-quote ((t (:foreground ,fg :slant italic :inherit org-block))))
    `(org-scheduled ((t (:foreground ,fg))))
@@ -234,7 +234,7 @@
    `(hl-line ((t (:background ,bg-highlight))))
    `(Shadow ((t (:foreground "grey75"))))
    `(idle-highlight ((t (:background ,bg-highlight))))
-   
+
    ;; evil-quickscope
    `(evil-quickscope-first-face ((t (:foreground ,fg :background "#eeeee8"))))
    `(evil-quickscope-second-face ((t (:foreground ,fg :background ,bg-highlight-3))))
