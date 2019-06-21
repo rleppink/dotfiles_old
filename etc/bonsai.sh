@@ -22,6 +22,6 @@ echo -e "                   \e[30mBe good to them, \e[32malways.\e[30m"
 echo
 echo
 
-cal -3
+cal -y
 
 echo

@@ -27,3 +27,8 @@
   :ensure t
   :init (setq evil-want-C-u-scroll t)
   :config (evil-mode))
+
+(use-package elixir-mode
+  :ensure t
+  :bind (:map elixir-mode-map
+	      ("C-c C-x" . 'execute-elixir)))

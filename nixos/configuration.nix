@@ -6,7 +6,7 @@ in
 {
   imports =
     [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
+      /etc/nixos/hardware-configuration.nix
     ];
 
   # Supposedley better for the SSD.
@@ -123,6 +123,8 @@ in
     # Simple 2d game development
     lua
     love_11
+
+    elixir
   ];
 
   sound.enable = true;

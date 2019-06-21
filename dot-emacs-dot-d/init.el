@@ -31,6 +31,13 @@
   (async-shell-command "love ."))
 
 
+;;; Elixir
+(defun execute-elixir ()
+  "Execute the `elixir` command in the current directory"
+  (interactive)
+  (async-shell-command (concat "elixir" " " (buffer-file-name))))
+
+
 ;;; Set directory for backup files
 (setq backup-directory-alist
       `(("." . ,(concat user-emacs-directory "backups"))))
