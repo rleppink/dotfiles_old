@@ -1,0 +1,59 @@
+""""""""""""""""""""""
+"" General settings ""
+""""""""""""""""""""""
+set scrolloff=10
+
+" Search
+set ignorecase
+set smartcase
+set incsearch
+
+
+""""""""""""""
+"" Mappings ""
+""""""""""""""
+nmap <Space> <Leader>
+
+" Go in code
+nmap <Leader>gr :vsc Edit.FindAllReferences<CR>
+nmap <Leader>gi :vsc Edit.GoToImplementation<CR>
+nmap <Leader>gd :vsc Edit.GoToDefinition<CR>
+nmap <Leader>gc :vsc Edit.GoToDeclaration<CR>
+nmap <Leader>gh :vsc EditorContextMenus.CodeWindow.ViewCallHierarchy<CR>
+nmap <Leader>gs :vsc SolutionExplorer.SyncWithActiveDocument<CR>
+nmap <Leader>ge :vsc View.NextError<CR>
+
+" Opening views
+nmap <Leader>wp :vsc View.TfsPendingChanges<CR>
+nmap <Leader>wo :vsc View.Output<CR>
+nmap <Leader>wf :vsc View.FindResults1<CR>
+nmap <Leader>wx :vsc View.SolutionExporer<CR>
+nmap <Leader>wt :vsc View.TfsTeamExplorer<CR>
+nmap <Leader>wc :vsc View.TfsSourceControlExplorer<CR>
+nmap <Leader>we :vsc View.ErrorList<CR>
+nmap <Leader>ws :vsc View.SolutionExplorer<CR>
+nmap <Leader>wh :vsc View.CallHierarchy<CR>
+nmap <Leader>wk :vsc Window.KeepTabOpen<CR>
+nmap <Leader>wh :vsc Window.MoveToPreviousTabGroup<CR>
+nmap <Leader>wl :vsc Window.MoveToNextTabGroup<CR>
+
+" Debug windows
+nmap <Leader>dwc :vsc Debug.CallStack<CR>
+nmap <Leader>dwl :vsc Debug.Locals<CR>
+nmap <Leader>dwa :vsc Debug.Autos<CR>
+
+" Refactor
+nmap <Leader>rr :vsc Refactor.Rename<CR>
+nmap <Leader>rc :vsc ReSharper.ReSharper_CleanupCode<CR>
+
+" File operations
+nmap <Leader>bd :vsc Window.CloseDocumentWindow<CR>
+nmap <Leader>fs :w<CR>
+nmap <Leader>pf :vsc Edit.GoToFile<CR>
+nmap <Leader>ff :vsc Edit.FindinFiles<CR>
+
+" Toggles
+nmap <Leader>th :nohl<CR>
+
+" Etc.
+vmap <Leader>c :vsc Edit.CommentSelection<CR>
