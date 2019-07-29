@@ -13,12 +13,30 @@
 
 
 ;; Package list
+(use-package ivy
+  :ensure t
+  :diminish (ivy-mode . "") ; Don't dispay ivy-mode in the modeline
+  :init (ivy-mode 1)
+  :demand
+  :config
+  (setq ivy-use-virtual-buffers t
+	ivy-count-format "%d/%d "))
+
+(use-package counsel
+  :ensure t
+  :bind (("M-x" . counsel-M-x)
+	 ("C-c C-f" . counsel-find-file)
+	 ("C-c C-s" . counsel-git-grep)))
+
+
+(use-package markdown-mode :ensure t)
 (use-package which-key :ensure t)
 
 (use-package lua-mode
-	     :ensure t
-	     :bind (:map lua-mode-map
-			 ("C-c C-r" . 'run-love)))
+  :ensure t
+  :bind (:map lua-mode-map
+	      ("C-c C-r" . 'run-love)))
+
 (use-package helm
   :ensure t
   :config (require 'helm-config))

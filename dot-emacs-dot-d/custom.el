@@ -10,6 +10,9 @@
  '(global-display-line-numbers-mode t)
  '(inhibit-startup-screen t)
  '(menu-bar-mode nil)
+ '(package-selected-packages
+   (quote
+    (elixir-mode evil helm lua-mode which-key markdown-mode counsel ivy use-package)))
  '(scroll-bar-mode nil)
  '(tool-bar-mode nil)
  '(truncate-lines t)
